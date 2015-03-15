@@ -17,22 +17,22 @@ data <- read.csv("activity.csv");
 ```r
 df_sum_by_date = ddply(data, .(date), summarise, step_sum=sum(steps, na.rm = TRUE))
 
-hist(df_sum_by_date$step_sum, breaks=20, xlab="Steps", main="Steps Taken per Day")
+hist(df_sum_by_date$step_sum, breaks=20, xlab="Steps", main="Distribution of Step Day Totals")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 
 ```r
-mean_steps_day <- mean(df_sum_by_date$step_sum)
+mean_steps_day <- format(round(mean(df_sum_by_date$step_sum), digits = 2), nsmall = 2)
 ```
-Mean number of steps taken per day: **9354.2295082**
+Mean number of steps taken per day: **9354.23**
 
 
 ```r
-median_steps_day <- median(df_sum_by_date$step_sum)
+median_steps_day <- format(round(median(df_sum_by_date$step_sum), digits = 2), nsmall = 2)
 ```
-Medium number of steps taken per day: **10395**
+Medium number of steps taken per day: **10395.00**
 
 
 
@@ -42,7 +42,7 @@ Medium number of steps taken per day: **10395**
 ```r
 df_mean_by_interval = ddply(data, .(interval), summarise, step_mean=mean(steps, na.rm = TRUE))
 
-plot(df_mean_by_interval$interval, df_mean_by_interval$step_mean, type = "l", xlab="Interval", ylab="Average Steps", main="Average Number of steps taken Across All Days")
+plot(df_mean_by_interval$interval, df_mean_by_interval$step_mean, type = "l", xlab="Interval", ylab="Average Steps", main="Average Number of Steps Taken Across All Days")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
@@ -87,22 +87,22 @@ for (i in 1:nrow(data_complete)) {
 ```r
 df_complete_sum_by_date = ddply(data_complete, .(date), summarise, step_sum=sum(steps, na.rm = TRUE))
 
-hist(df_complete_sum_by_date$step_sum, breaks=20, xlab="Steps", main="Steps Taken per Day")
+hist(df_complete_sum_by_date$step_sum, breaks=20, xlab="Steps", main="Distribution of Step Day Totals - No Missing Data")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 
 
 ```r
-mean_complete_steps_day <- mean(df_complete_sum_by_date$step_sum)
+mean_complete_steps_day <- format(round(mean(df_complete_sum_by_date$step_sum), digits=2), nsmall = 2)
 ```
-Mean number of steps taken per day: **1.0766189\times 10^{4}**
+Mean number of steps taken per day: **10766.19**
 
 
 ```r
-median_complete_steps_day <- median(df_complete_sum_by_date$step_sum)
+median_complete_steps_day <- format(round(median(df_complete_sum_by_date$step_sum), digits = 2), nsmall = 2)
 ```
-Median number of steps taken per day: **1.0766189\times 10^{4}**
+Median number of steps taken per day: **10766.19**
 
 Filling in the missing data increased the total steps per day and made the total's average equal to the total's median.
 
